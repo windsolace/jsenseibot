@@ -1,12 +1,17 @@
 const debug = require('debug')("jsensei");
-const Telegraf = require('telegraf')
+const Extra = require('telegraf/extra');
+const Markup = require('telegraf/markup');
+const Telegraf = require('telegraf');
+
+//My modules
 const JTranslate = require('./translate');
+const GrammarMod = require('./modules/grammar');
 
 const scheduleUrl = "https://goo.gl/3aNohw";
 const katakanaUrl = "https://goo.gl/3QK9TG";
 const hiraganaUrl = "https://goo.gl/Q3kQ5p";
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {username: 'jsenseibot'});
+const bot = new Telegraf(process.env.BOT_TOKEN, {username: 'jsenseitestbot'});
 
 //start debugging
 const name = 'jsensei';
@@ -28,10 +33,19 @@ bot.hears(/\b([Tt]ranslate)\b-/, (ctx) => {
 		debug("====================================");
 	});
 });
-bot.hears('hi', (ctx) => ctx.reply("I'm awake, i'm awake!"));
+bot.hears(/hi/i, (ctx) => ctx.reply("I'm awake, i'm awake!"));
+bot.hears('bad bot', (ctx) => ctx.reply("I'm sorry"));
+bot.hears('good bot', (ctx) => ctx.reply("Thanks! <3"));
+
+var grammarMod = new GrammarMod();
+grammarMod.init(bot);
+
 
 //Return image of current schedule
 bot.command('getschedule', (ctx) => ctx.replyWithPhoto(scheduleUrl));
+bot.command('showkatakana', (ctx)=> ctx.replyWithPhoto(katakanaUrl));
+bot.command('showhiragana', (ctx)=> ctx.replyWithPhoto(hiraganaUrl));
+
 
 // bot.hears(/buy/i, (ctx) => ctx.reply('Buy-buy!'))
 // bot.on('sticker', (ctx) => ctx.reply('👍'))
