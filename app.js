@@ -40,7 +40,13 @@ bot.hears('good bot', (ctx) => ctx.reply("Thanks! <3"));
 var grammarMod = new GrammarMod();
 grammarMod.init(bot);
 
-
+//===== Commands =====//
+/*
+getschedule - Get Schedule
+helpgrammar - Get help on Grammar
+showhiragana - Show Hiragana Chart
+showkatakana - Show Katakana Chart
+*/
 //Return image of current schedule
 bot.command('getschedule', (ctx) => ctx.replyWithPhoto(scheduleUrl));
 bot.command('showkatakana', (ctx)=> ctx.replyWithPhoto(katakanaUrl));

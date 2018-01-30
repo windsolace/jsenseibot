@@ -14,10 +14,9 @@ class GrammarMod{
 		debug("Grammar mod started");
 		var keigoMod = new KeigoMod();
 
-		bot.hears(/\bhelp me\b/i, (ctx) => {
+		bot.command("helpgrammar", (ctx) => {
 			ctx.message.text = "What do you need help with?";
             ctx.telegram.sendCopy(ctx.message.chat.id, ctx.message, Extra.markup(grammarMenu));
-            
 		});
 
         bot.action(KEY_KEIGO, (ctx) => {
