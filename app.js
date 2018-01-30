@@ -11,7 +11,11 @@ const scheduleUrl = "https://goo.gl/3aNohw";
 const katakanaUrl = "https://goo.gl/3QK9TG";
 const hiraganaUrl = "https://goo.gl/Q3kQ5p";
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {username: 'jsenseitestbot'});
+const bot = new Telegraf(process.env.BOT_TOKEN);
+bot.telegram.getMe().then((botInfo) => {
+	bot.options.username = botInfo.username
+});
+
 
 //start debugging
 const name = 'jsensei';
@@ -22,7 +26,7 @@ bot.start((ctx) => {
 	return ctx.reply('Welcome!')
 });
 
-//bot hears "translate-" or "Translate-"
+bot hears "translate-" or "Translate-"
 bot.hears(/\b([Tt]ranslate)\b-/, (ctx) => {
 	var message = ctx.message.text;
 	debug("====================================");
@@ -34,8 +38,8 @@ bot.hears(/\b([Tt]ranslate)\b-/, (ctx) => {
 	});
 });
 bot.hears(/\bhi\b/i, (ctx) => ctx.reply("The sleeper has awaken!"));
-bot.hears('bad bot', (ctx) => ctx.reply("I'm sorry"));
-bot.hears('good bot', (ctx) => ctx.reply("Thanks! <3"));
+bot.hears('/bad bot/i', (ctx) => ctx.reply("I'm sorry"));
+bot.hears('/good bot/i', (ctx) => ctx.reply("Thanks! <3"));
 
 var grammarMod = new GrammarMod();
 grammarMod.init(bot);
