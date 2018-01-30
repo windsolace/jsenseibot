@@ -33,7 +33,7 @@ bot.hears(/\b([Tt]ranslate)\b-/, (ctx) => {
 		debug("====================================");
 	});
 });
-bot.hears(/hi/i, (ctx) => ctx.reply("I'm awake, i'm awake!"));
+bot.hears(/\bhi\b/i, (ctx) => ctx.reply("The sleeper has awaken!"));
 bot.hears('bad bot', (ctx) => ctx.reply("I'm sorry"));
 bot.hears('good bot', (ctx) => ctx.reply("Thanks! <3"));
 
