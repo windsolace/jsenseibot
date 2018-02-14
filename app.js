@@ -37,9 +37,22 @@ bot.hears(/\b([Tt]ranslate)\b-/, (ctx) => {
 		debug("====================================");
 	});
 });
-bot.hears(/\bhi\b/i, (ctx) => ctx.reply("The sleeper has awaken!"));
-bot.hears('/bad bot/i', (ctx) => ctx.reply("I'm sorry"));
-bot.hears('/good bot/i', (ctx) => ctx.reply("Thanks! <3"));
+bot.hears(/\bhi\b/i, (ctx) => {
+	var today = new Date();
+	var curHr = today.getHours();
+	let greetingMsg = "Hello!";
+
+	if (curHr < 12) {
+		greetingMsg = 'Good morning!';
+	} else if (curHr < 18) {
+		greetingMsg = 'Good afternoon!';
+	} else {
+		greetingMsg = 'Good evening!';
+	}
+	ctx.reply(greetingMsg);
+});
+bot.hears('/\bbad bot\b/i', (ctx) => ctx.reply("I'm sorry"));
+bot.hears('/\bgood bot\b/i', (ctx) => ctx.reply("Thanks! <3"));
 
 var grammarMod = new GrammarMod();
 grammarMod.init(bot);
