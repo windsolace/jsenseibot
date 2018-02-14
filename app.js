@@ -51,8 +51,8 @@ bot.hears(/\bhi\b/i, (ctx) => {
 	}
 	ctx.reply(greetingMsg);
 });
-bot.hears('/\bbad bot\b/i', (ctx) => ctx.reply("I'm sorry"));
-bot.hears('/\bgood bot\b/i', (ctx) => ctx.reply("Thanks! <3"));
+bot.hears(/\bbad bot\b/i, (ctx) => ctx.reply("I'm sorry"));
+bot.hears(/\bgood bot\b/i, (ctx) => ctx.reply("Thanks! <3"));
 
 var grammarMod = new GrammarMod();
 grammarMod.init(bot);
